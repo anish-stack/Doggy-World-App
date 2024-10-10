@@ -1,0 +1,31 @@
+{
+  "cli": {
+    "version": ">= 11.0.3"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "android": {
+        "buildType": "apk",
+        "env": {
+          "GOOGLE_SERVICES_JSON": "./google-services.json"
+        }
+      },
+      "ios": {
+        "buildType": "archive",
+        "env": {
+          "GOOGLE_SERVICE_INFO_PLIST": "./GoogleService-Info.plist"
+        }
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

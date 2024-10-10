@@ -1,0 +1,29 @@
+{
+    "project_info": {
+      "project_number": "1042307045247",
+      "project_id": "react-native-notificatio-45b76",
+      "storage_bucket": "react-native-notificatio-45b76.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:1042307045247:android:bd214786dbf09368916c4a",
+          "android_client_info": {
+            "package_name": "petwellenes.app"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDnL9lWYMg9FRL-zrw1VPBn9B6KE9dPAGM"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
