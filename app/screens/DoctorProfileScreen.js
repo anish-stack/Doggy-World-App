@@ -38,7 +38,7 @@ export default function DoctorProfileScreen() {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/get-doctor/${id}`);
+                const response = await axios.get(`https://www.doggy.adsdigitalmedia.com/api/v1/Doctors/get-doctor/${id}`);
                 if (response.data.success) {
                     setDoctor(response.data.data);
                 } else {

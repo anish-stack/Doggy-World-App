@@ -122,7 +122,7 @@ export default function DateAndTime() {
     const fetchAlreadyBookedTimes = async (date) => {
         const formattedDate = date.toISOString().split('T')[0]; // Format date to YYYY-MM-DD
         try {
-            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/get-doctor-booked/${doctor._id}?date=${formattedDate}`);
+            const { data } = await axios.get(`https://www.doggy.adsdigitalmedia.com/api/v1/Doctors/get-doctor-booked/${doctor._id}?date=${formattedDate}`);
             console.log(data)
             if (data.success) {
                 setBookedTimes(data.data || []);

@@ -82,7 +82,7 @@ export default function PaymentStep() {
         } else {
 
             try {
-                const { data } = await axios.post(`http://192.168.1.7:7000/api/v1/auth/Create-Order`, formattedData, {
+                const { data } = await axios.post(`https://www.doggy.adsdigitalmedia.com/api/v1/auth/Create-Order`, formattedData, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

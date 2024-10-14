@@ -29,7 +29,7 @@ export default function ProfileService() {
         try {
             setLoading(true)
             const response = await axios.get(
-                'http://192.168.1.7:7000/api/v1/pet/get-my-bookings?type=Service',
+                'https://www.doggy.adsdigitalmedia.com/api/v1/pet/get-my-bookings?type=Service',
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setLoading(false)

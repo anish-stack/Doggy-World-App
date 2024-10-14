@@ -22,7 +22,7 @@ export default function Doctors() {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await axios.get('http://192.168.1.7:7000/api/v1/Doctors/get-doctor');
+                const response = await axios.get('https://www.doggy.adsdigitalmedia.com/api/v1/Doctors/get-doctor');
                 if (response.data.success) {
                     // console.log(response.data)
                     setDoctors(response.data.data); // Store fetched doctors in state

@@ -30,7 +30,7 @@ const Otp = ({ navigation }) => {
 
     const handleVerify = async () => {
         try {
-            const res = await axios.post('http://192.168.1.7:7000/api/v1/auth/verify-Otp', {
+            const res = await axios.post('https://www.doggy.adsdigitalmedia.com/api/v1/auth/verify-Otp', {
                 Contact: contactNumber,
                 otp: otp
             });
@@ -54,7 +54,7 @@ const Otp = ({ navigation }) => {
 
     const handleResendOtp = async () => {
         try {
-            const res = await axios.post('http://192.168.1.7:7000/api/v1/auth/resend-Otp', {
+            const res = await axios.post('https://www.doggy.adsdigitalmedia.com/api/v1/auth/resend-Otp', {
                 Contact: contactNumber
             });
             Toast.show({

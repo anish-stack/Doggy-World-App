@@ -25,7 +25,7 @@ export default function Branch() {
     const FetchData = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/Get-Branch-Service?servicesId=${item}`);
+            const { data } = await axios.get(`https://www.doggy.adsdigitalmedia.com/api/v1/Doctors/Get-Branch-Service?servicesId=${item}`);
             if (data.data.length > 0) {
                 setData(data.data)
             } else {

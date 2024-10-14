@@ -24,7 +24,7 @@ export default function MyAppointments() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const { data } = await axios.get('http://192.168.1.7:7000/api/v1/pet/get-my-Appoinment', {
+                const { data } = await axios.get('https://www.doggy.adsdigitalmedia.com/api/v1/pet/get-my-Appoinment', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -42,7 +42,7 @@ export default function MyAppointments() {
 
     const handleCancelAppointment = async (id) => {
         try {
-            const { data } = await axios.post('http://192.168.1.7:7000/api/v1/pet/cancel-my-Appoinment', {
+            const { data } = await axios.post('https://www.doggy.adsdigitalmedia.com/api/v1/pet/cancel-my-Appoinment', {
                 appointmentId: id,
             }, {
                 headers: {
@@ -82,7 +82,7 @@ export default function MyAppointments() {
     const handleRate = async (doctorId, appointmentId, rating, feedback) => {
         const typeOfRating = 'appointment';
         try {
-            const { data } = await axios.post('http://192.168.1.7:7000/api/v1/Doctors/CreateRating', {
+            const { data } = await axios.post('https://www.doggy.adsdigitalmedia.com/api/v1/Doctors/CreateRating', {
                 rating: rating,
                 feedback,
                 typeOfRating,

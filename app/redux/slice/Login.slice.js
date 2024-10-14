@@ -51,7 +51,7 @@ export const loginUser = (contactNumber, otp, navigation) => async (dispatch) =>
         console.log('Login process started');
 
         const response = await axios.post(
-            'http://192.168.1.7:7000/api/v1/pet/pet-register-VerifyOtp',
+            'https://www.doggy.adsdigitalmedia.com/api/v1/pet/pet-register-VerifyOtp',
             { ContactNumber: contactNumber, otp, type: 'login' }
         );
 

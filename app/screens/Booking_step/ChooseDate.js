@@ -88,7 +88,7 @@ export default function ChooseDate() {
 
     const fetchClinic = async () => {
         try {
-            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/Get-Single-Branch/${ClinicId}`);
+            const { data } = await axios.get(`https://www.doggy.adsdigitalmedia.com/api/v1/Doctors/Get-Single-Branch/${ClinicId}`);
             if (data.data) {
                 setClinic(data.data);
             } else {

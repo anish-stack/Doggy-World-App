@@ -64,7 +64,7 @@ const SingleProduct = () => {
     const handleFetchDataById = async () => {
         try {
             setLoader(true);
-            const response = await axios.get(`http://192.168.1.7:7000/api/v1/Product/Get-Single-Product/${title}`);
+            const response = await axios.get(`https://www.doggy.adsdigitalmedia.com/api/v1/Product/Get-Single-Product/${title}`);
             if (response.data) {
                 setProduct(response.data.data);
                 setRelatedProduct(response.data.relatedProducts);

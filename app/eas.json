@@ -4,7 +4,7 @@
   },
   "build": {
     "development": {
-      "developmentClient": true,
+      "developmentClient": false,
       "distribution": "internal"
     },
     "preview": {
@@ -18,7 +18,6 @@
         }
       },
       "ios": {
-        "buildType": "archive",
         "env": {
           "GOOGLE_SERVICE_INFO_PLIST": "./GoogleService-Info.plist"
         }

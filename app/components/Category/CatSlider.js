@@ -13,7 +13,7 @@ const CatSlider = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await axios.get('http://192.168.1.7:7000/api/v1/Product/Get-All-category');
+            const response = await axios.get('https://www.doggy.adsdigitalmedia.com/api/v1/Product/Get-All-category');
             setData(response.data.data);
         } catch (error) {
             console.error('Error fetching data:', error);

@@ -50,7 +50,7 @@ export default function AppointmentBook() {
         };
 
         try {
-            const { data } = await axios.post('http://192.168.1.7:7000/api/v1/Product/book-appointment', submitData, {
+            const { data } = await axios.post('https://www.doggy.adsdigitalmedia.com/api/v1/Product/book-appointment', submitData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
