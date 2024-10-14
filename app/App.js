@@ -51,6 +51,11 @@ import ProfileService from './screens/Member/Service';
 import PrivacyPolicy from './screens/Policy/Policy';
 import Orders from './screens/Orders/Orders';
 import Doctors from './screens/doctors/Doctors';
+import DateAndTime from './screens/Appoinements/DateAndTime';
+import AppoinemntBook from './screens/Appoinements/AppoinemntBook';
+import SuccessPage from './screens/Appoinements/SuccessPage';
+import MyAppoinments from './screens/Member/MyAppoinments';
+import HomeBranch from './screens/Branchs/HomeBranch';
 
 //Routes
 const Stack = createNativeStackNavigator();
@@ -75,7 +80,9 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={isAuthenticated ? 'home' : 'onboard'}>
+      <Stack.Navigator >
+
+      {/* <Stack.Navigator initialRouteName={isAuthenticated ? 'home' : 'onboard'}> */}
         <Stack.Screen name='home' component={Home} options={{ headerShown: false }} />
         <Stack.Screen name='clinic' component={Clinic} options={{ headerShown: false }} />
         <Stack.Screen name='grooming' component={Grooming} options={{ headerShown: false }} />
@@ -95,6 +102,8 @@ const App = () => {
         <Stack.Screen name='Orders' options={{ headerShown: true, title: "Order For Your Buddy" }} component={Orders} />
         <Stack.Screen name='service' options={{ headerShown: true, title: "Pet Service With Happines" }} component={Service} />
         <Stack.Screen name='Branch' options={{ headerShown: true, title: "Our Branches" }} component={Branch} />
+        <Stack.Screen name='HomeBranch' options={{ headerShown: true, title: "Our Clinic For You" }} component={HomeBranch} />
+
         <Stack.Screen name='details' options={{ headerShown: true, title: "Book Service For Your Buddy" }} component={Details} />
         <Stack.Screen name='further-step' options={{ headerShown: true, title: "Choose Your Sutable Time" }} component={ChooseDate} />
         <Stack.Screen name='Payment' options={{ headerShown: true, title: "Confirm Booking" }} component={PaymentStep} />
@@ -102,10 +111,14 @@ const App = () => {
 
         {/* Doctor sccren */}
         <Stack.Screen name='Doctor' options={{ headerShown: true, title: "Appointment with Your Doctor" }} component={Doctors} />
+        <Stack.Screen name='Date-and-time' options={{ headerShown: true, title: "Schedule Your Ideal Time" }} component={DateAndTime} />
+        <Stack.Screen name='Booking-step' options={{ headerShown: true, title: "Your Appointment Has Been Finalized" }} component={AppoinemntBook} />
+        <Stack.Screen name='success-page' options={{ headerShown: true, title: "Your Appointment Has Been Booked" }} component={SuccessPage} />
 
         {/* Profile screen */}
         <Stack.Screen name='Profile' component={Member} />
         <Stack.Screen name='ProfileService' options={{ headerShown: true, title: "Your Service Have Been Booked" }} component={ProfileService} />
+        <Stack.Screen name='My-Appointment' options={{ headerShown: true, title: "Appoinments" }} component={MyAppoinments} />
 
         <Stack.Screen name='petLogin' component={PetLogin} options={{ headerShown: false }} />
         <Stack.Screen name='otp' component={Otp} options={{ headerShown: false }} />

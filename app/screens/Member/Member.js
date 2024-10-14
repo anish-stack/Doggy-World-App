@@ -77,26 +77,28 @@ const Member = ({ navigation }) => {
 
                     <View className='flex items-center px-2 bg-[#fffafa] mt-4  justify-center' >
 
-                        <View className='flex-row items-center bg-gray-100  px-3 py-3 w-full justify-between'>
-                            <Text>🩺 Medical Records</Text>
-                            <Text className='text-gray-500 font-semibold'> <FontAwesome name='angle-right' size={25} color={'#000'} /></Text>
 
+                        <View>
+                            <TouchableOpacity onPress={() => loginPageNavigate.navigate('My-Medical')} className='flex-row items-center px-3 py-3 w-full justify-between'>
+                                <Text>🩺 Medical Records</Text>
+                                <Text className='text-gray-500 font-semibold'> <FontAwesome name='angle-right' size={25} color={'#000'} /></Text>
+                            </TouchableOpacity>
                         </View>
 
-                        <View className='flex-row items-center px-3 py-3 w-full justify-between'>
-                            <Text>⌚ Appointment</Text>
-                            <Text className='text-gray-500 font-semibold'> <FontAwesome name='angle-right' size={25} color={'#000'} /></Text>
-
+                        <View>
+                            <TouchableOpacity onPress={() => loginPageNavigate.navigate('My-Appointment')} className='flex-row items-center px-3 py-3 w-full justify-between'>
+                                <Text>⌚ Appointment</Text>
+                                <Text className='text-gray-500 font-semibold'> <FontAwesome name='angle-right' size={25} color={'#000'} /></Text>
+                            </TouchableOpacity>
                         </View>
-
-                        <View className='flex-row bg-gray-100 items-center px-3 py-3 w-full justify-between'>
+                        <View>
 
                             <TouchableOpacity onPress={() => loginPageNavigate.navigate('Orders')} className='flex-row items-center px-3 py-3 w-full justify-between'>
                                 <Text>🛍️ Orders</Text>
                                 <Text className='text-gray-500 font-semibold'> <FontAwesome name='angle-right' size={25} color={'#000'} /></Text>
                             </TouchableOpacity>
                         </View>
-                        <View  >
+                        <View>
                             <TouchableOpacity onPress={() => loginPageNavigate.navigate('ProfileService')} className='flex-row items-center px-3 py-3 w-full justify-between'>
                                 <Text>🧼 Services</Text>
                                 <Text className='text-gray-500 font-semibold'> <FontAwesome name='angle-right' size={25} color={'#000'} /></Text>

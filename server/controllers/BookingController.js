@@ -1,11 +1,14 @@
 const BookingModel = require('../models/Booking.model')
 const Razorpay = require('razorpay')
 const axios = require('axios')
-const CatchAsync = require('../middlewares/CatchAsync')
 const crypto = require('crypto');
 const merchantId = "M2257T8PKCFTS"
 const apiKey = "382a6ef0-8a78-4abd-bc79-5fd4afca18e6"
-
+const Pet = require('../models/Pet.model')
+const CatchAsync = require('../middlewares/CatchAsync')
+const Appoinements = require('../models/Appoinment.model')
+const Doctors = require('../models/Doctor.model')
+const moment = require('moment')
 
 exports.CreateOrder = CatchAsync(async (req, res) => {
     try {
@@ -131,6 +134,191 @@ exports.getMyBookings = CatchAsync(async (req, res) => {
         res.status(500).json({
             status: 'error',
             message: 'An error occurred while fetching bookings.'
+        });
+    }
+});
+
+
+exports.MakeAppoinment = CatchAsync(async (req, res) => {
+    try {
+        const petId = req.user.id._id;
+
+        if (!petId) {
+            return res.status(401).json({
+                success: false,
+                message: "Please login to access this"
+            });
+        }
+
+
+        const checkPet = await Pet.findById(petId);
+        if (!checkPet) {
+            return res.status(404).json({
+                success: false,
+                message: "Pet Not Found"
+            });
+        }
+
+        const { AppoinemnetTime, AppoinmentDate, TypeOfAppoinmnet, contactNumber, doctor_id, isPaymentDone, payableAmount, paymentType } = req.body;
+
+        const checkDoctor = await Doctors.findById(doctor_id);
+        if (!checkDoctor) {
+            return res.status(404).json({
+                success: false,
+                message: "Doctor Not Found"
+            });
+        }
+
+
+        const checkTime = await Appoinements.findOne({
+            doctor_id: doctor_id,
+            date: AppoinmentDate,
+            time: AppoinemnetTime
+        });
+
+        if (checkTime) {
+            return res.status(409).json({
+                success: false,
+                message: "Appointment time is already booked for this doctor on the selected date"
+            });
+        }
+
+        // Proceed to create the appointment
+        const newAppointment = new Appoinements({
+            petId,
+            date: AppoinmentDate,
+            time: AppoinemnetTime,
+            typeOfAppointment: TypeOfAppoinmnet,
+            contactNumber,
+            doctor_id,
+            isPaymentDone,
+            fee: payableAmount,
+            paymentType
+        });
+        checkDoctor.appointments.push(newAppointment._id)
+        await newAppointment.save();
+        await checkDoctor.save()
+        return res.status(201).json({
+            success: true,
+            message: "Appointment created successfully",
+            appointment: newAppointment
+        });
+
+    } catch (error) {
+        console.error(error); // Log the error for debugging
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+});
+
+exports.GetMyAppoinment = CatchAsync(async (req, res) => {
+    try {
+        const petId = req.user.id;
+        if (!petId) {
+            return res.status(401).json({
+                success: false,
+                message: "Please login to access this"
+            });
+        }
+
+        const checkPet = await Pet.findById(petId);
+        if (!checkPet) {
+            return res.status(404).json({
+                success: false,
+                message: "Pet Not Found"
+            });
+        }
+
+        const appointments = await Appoinements.find({ petId: checkPet._id })
+            .sort({ createdAt: -1 })
+            .populate('doctor_id');
+
+        return res.status(200).json({
+            success: true,
+            appointments,
+            totalAppointments: appointments.length
+        });
+    } catch (error) {
+        console.error("Error fetching appointments:", error);
+        return res.status(500).json({
+            success: false,
+            message: "An error occurred while fetching appointments.",
+            error: error.message
+        });
+    }
+});
+
+exports.CancelAppoinment = CatchAsync(async (req, res) => {
+    try {
+        const petId = req.user.id._id; // Extract pet ID from the user object
+        if (!petId) {
+            return res.status(401).json({
+                success: false,
+                message: "Please login to access this"
+            });
+        }
+
+        // Check if the pet exists
+        const checkPet = await Pet.findById(petId);
+        if (!checkPet) {
+            return res.status(404).json({
+                success: false,
+                message: "Pet Not Found"
+            });
+        }
+
+        const { appointmentId, notes } = req.body;
+
+        if (!appointmentId) {
+            return res.status(400).json({
+                success: false,
+                message: "Appointment ID is required"
+            });
+        }
+
+        const appointment = await Appoinements.findById(appointmentId);
+        if (!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found"
+            });
+        }
+
+        if (appointment.petId.toString() !== petId) {
+            return res.status(403).json({
+                success: false,
+                message: "You are not authorized to cancel this appointment"
+            });
+        }
+
+        const appointmentTime = moment(`${appointment.date} ${appointment.time}`);
+        const currentTime = moment();
+
+        const isCancellationAllowed = appointmentTime.diff(currentTime, 'minutes') > 15;
+        if (!isCancellationAllowed) {
+            return res.status(403).json({
+                success: false,
+                message: "Cancellation is only allowed 15 minutes before the appointment"
+            });
+        }
+
+
+        appointment.status = "Cancelled";
+        appointment.notes = notes;
+        await appointment.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Appointment cancelled successfully"
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "An error occurred while cancelling the appointment"
         });
     }
 });

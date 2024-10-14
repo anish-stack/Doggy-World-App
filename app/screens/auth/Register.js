@@ -42,7 +42,7 @@ const Register = ({ navigation }) => {
     }
 
     try {
-      const res = await axios.post('http://192.168.1.5:7000/api/v1/auth/Sign-up', formdata)
+      const res = await axios.post('http://192.168.1.7:7000/api/v1/auth/Sign-up', formdata)
       Toast.show({
         type: 'success',
         text1: 'Registration Success',

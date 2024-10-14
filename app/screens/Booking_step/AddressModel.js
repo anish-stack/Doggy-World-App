@@ -30,7 +30,7 @@ export default function AddressModel({ isOpen, onClose, type,onSelectAddress  })
         setLoading(true);
         console.log(token)
         try {
-            const { data } = await axios.get('http://192.168.1.5:7000/api/v1/pet/get-address', {
+            const { data } = await axios.get('http://192.168.1.7:7000/api/v1/pet/get-address', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -56,7 +56,7 @@ export default function AddressModel({ isOpen, onClose, type,onSelectAddress  })
     const handleAddAddress = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.post('http://192.168.1.5:7000/api/v1/pet/add-address', addressData, {
+            const { data } = await axios.post('http://192.168.1.7:7000/api/v1/pet/add-address', addressData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -86,7 +86,7 @@ export default function AddressModel({ isOpen, onClose, type,onSelectAddress  })
 
     const handleRemoveAddress = async (id) => {
         try {
-            const { data } = await axios.delete(`http://192.168.1.5:7000/api/v1/pet/remove-address/${id}`, {
+            const { data } = await axios.delete(`http://192.168.1.7:7000/api/v1/pet/remove-address/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

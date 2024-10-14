@@ -214,3 +214,71 @@ exports.GetDoctorInformation = CatchAsync(async (req, res) => {
         });
     }
 });
+
+
+exports.getAlredayBookedTimeForMe = CatchAsync(async (req, res) => {
+    try {
+        const doctorId = req.params.id;
+        const { date } = req.query;
+        console.log(date)
+        const currentDate = new Date();
+        const providedDate = new Date(date);
+
+        providedDate.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
+
+        if (providedDate < currentDate) {
+            return res.status(400).json({
+                success: false,
+                message: "The selected date has already passed. Please choose a future date."
+            });
+        }
+
+        const checkDoctor = await doctors.findById(doctorId).populate('appointments');
+        if (!checkDoctor) {
+            return res.status(404).json({
+                success: false,
+                message: "Doctor not found"
+            });
+        }
+
+        const formattedProvidedDate = providedDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        const alreadyBookedTimes = checkDoctor.appointments.filter(appointment => {
+            // Convert the appointment date from the database into a formatted string
+            const appointmentDate = new Date(appointment.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            return appointmentDate === formattedProvidedDate;
+        });
+
+        const bookedTimes = alreadyBookedTimes.map(appointment => appointment.time);
+        if (bookedTimes.length === 0) {
+            return res.status(200).json({
+                success: false,
+                message: "No booked times",
+
+            });
+        }
+        // Respond with the booked times
+        return res.status(200).json({
+            success: true,
+            message: "Already booked times",
+            data: bookedTimes
+        });
+
+    } catch (error) {
+        console.error("Error fetching booked times:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+});

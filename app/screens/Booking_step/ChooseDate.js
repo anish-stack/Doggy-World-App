@@ -27,7 +27,6 @@ const generateCalendarDates = (year, month) => {
     return dates;
 };
 
-// Function to format dates (e.g. 05 Oct)
 const formatDate = (date, formatType) => {
     const day = date.getDate().toString().padStart(2, '0');
     const monthShort = date.toLocaleString('default', { month: 'short' }); // 'Oct', 'Nov', etc.
@@ -43,7 +42,6 @@ const formatDate = (date, formatType) => {
     }
 };
 
-// Function to make 30-minute time steps
 const timeStringToDate = (timeString) => {
     const date = new Date();
     const [hours, minutes] = timeString.split(':');
@@ -52,7 +50,6 @@ const timeStringToDate = (timeString) => {
     return date;
 };
 
-// Function to format a Date object into HH:MM format
 const formatTime = (date) => {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -91,7 +88,7 @@ export default function ChooseDate() {
 
     const fetchClinic = async () => {
         try {
-            const { data } = await axios.get(`http://192.168.1.5:7000/api/v1/Doctors/Get-Single-Branch/${ClinicId}`);
+            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/Get-Single-Branch/${ClinicId}`);
             if (data.data) {
                 setClinic(data.data);
             } else {

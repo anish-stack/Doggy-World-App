@@ -42,7 +42,7 @@ export default function VerificationStep() {
                 Newsletter: subscribe,
             };
             try {
-                const response = await axios.post('http://192.168.1.5:7000/api/v1/pet/pet-register', data);
+                const response = await axios.post('http://192.168.1.7:7000/api/v1/pet/pet-register', data);
                 console.log(response.data.data.message)
                 setIsOtpSent(true);
             } catch (error) {
@@ -62,7 +62,7 @@ export default function VerificationStep() {
         setIsLoading(true);
         const data = { ContactNumber: contactNumber, otp };
         try {
-            const response = await axios.post('http://192.168.1.5:7000/api/v1/pet/pet-register-VerifyOtp', data);
+            const response = await axios.post('http://192.168.1.7:7000/api/v1/pet/pet-register-VerifyOtp', data);
             Toast.show({
                 type: 'success',
                 text1: 'Verified Success !! 🐕‍🦺',
@@ -85,7 +85,7 @@ export default function VerificationStep() {
         setIsLoading(true);
         const data = { ContactNumber: contactNumber };
         try {
-            const response = await axios.post('http://192.168.1.5:7000/api/v1/pet/pet-register-resendOtp', data);
+            const response = await axios.post('http://192.168.1.7:7000/api/v1/pet/pet-register-resendOtp', data);
             console.log(response.data.message)
             Toast.show({
                 type: 'success',

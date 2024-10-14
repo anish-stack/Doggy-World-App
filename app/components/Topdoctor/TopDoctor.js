@@ -17,7 +17,7 @@ const TopDoctor = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await axios.get('http://192.168.1.5:7000/api/v1/Doctors/get-doctor');
+                const response = await axios.get('http://192.168.1.7:7000/api/v1/Doctors/get-doctor');
                 if (response.data.success) {
                     setDoctors(response.data.data);
                 } else {

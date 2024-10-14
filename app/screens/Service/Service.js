@@ -15,7 +15,7 @@ export default function Service() {
 
     const handleFetch = async () => {
         try {
-            const { data } = await axios.get('http://192.168.1.5:7000/api/v1/Doctors/Get-Services');
+            const { data } = await axios.get('http://192.168.1.7:7000/api/v1/Doctors/Get-Services');
 
             const findOnlyTitleIdProducts = data.data.filter((item) => item.ServiceCategorey._id === title._id);
 

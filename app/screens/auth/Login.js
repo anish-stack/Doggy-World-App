@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
         }
 
         try {
-            const res = await axios.post('http://192.168.1.5:7000/api/v1/auth/Sign-in', formdata)
+            const res = await axios.post('http://192.168.1.7:7000/api/v1/auth/Sign-in', formdata)
             Toast.show({
                 type: 'success',
                 text1: 'Login Success',

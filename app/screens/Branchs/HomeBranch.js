@@ -11,11 +11,11 @@ import Layout from '../../components/Layout/Layout'
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height
-export default function Branch() {
+export default function HomeBranch() {
     const [activeTab, setActiveTab] = useState('Near You');
     const locations = ['Near You', 'Delhi', 'Rohini', 'Noida', 'Gurugram'];
     const route = useRoute()
-    const { item } = route.params;
+    // const { item } = route.params;
     const navigation = useNavigation()
 
     const [data, setData] = useState([])
@@ -25,7 +25,7 @@ export default function Branch() {
     const FetchData = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/Get-Branch-Service?servicesId=${item}`);
+            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/Get-Branch`);
             if (data.data.length > 0) {
                 setData(data.data)
             } else {
@@ -42,7 +42,7 @@ export default function Branch() {
 
     useEffect(() => {
         FetchData()
-    }, [item])
+    }, [])
     if (loading) {
         return <Loader />
     }
@@ -97,7 +97,7 @@ export default function Branch() {
 
                             {/* Text and Info Section */}
                             <View className="mb-4">
-                                <TouchableOpacity onPress={() => navigation.navigate('details', { itemId: info._id, serviceId: item })} >
+                                <TouchableOpacity >
                                     <Text className="text-lg px-2 font-semibold text-gray-800">
                                         Doggy World, {info?.Landmark || "N/A"}
                                     </Text>

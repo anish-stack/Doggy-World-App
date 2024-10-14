@@ -2,42 +2,36 @@ const mongoose = require('mongoose');
 
 const appointmentSchema = new mongoose.Schema({
     date: {
-        type: Date,
+        type: String,
         required: true,
     },
     time: {
         type: String,
         required: true,
     },
+    doctor_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'DoctorProfile',
+    },
     petId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Pet',
     },
-    petType: {
+    paymentType:{
         type: String,
-        required: true,
     },
-    petAge: {
-        type: Number,
-        required: true,
-    },
-    description: {
-        type: String,
-        required: true,
+    isPaymentDone:{
+        type: Boolean,
+        default:false,
     },
     typeOfAppointment: {
         type: String,
         required: true,
-        enum: ['Check-up', 'Vaccination', 'Surgery', 'Grooming', 'Other'],
     },
-    discountApplied: {
-        type: Boolean,
-        default: false,
-    },
-    discountId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Discount',
+    contactNumber: {
+        type: String,
     },
     fee: {
         type: Number,
@@ -45,7 +39,6 @@ const appointmentSchema = new mongoose.Schema({
     },
     branchId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: 'Branch',
     },
     status: {

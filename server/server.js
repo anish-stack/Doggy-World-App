@@ -10,7 +10,6 @@ const ApiRouter = require('./routes/Auth.routes');
 const ProductsRouter = require('./routes/Products.routes');
 const DoctorRouter = require('./routes/Doctor.routes');
 const PetRoutes = require('./routes/Pet.routes');
-const router = require('./routes/google');
 const session = require('cookie-session');
 
 app.use(
@@ -48,7 +47,7 @@ app.use('/api/v1/auth', ApiRouter);
 app.use('/api/v1/Product', ProductsRouter);
 app.use('/api/v1/Doctors', DoctorRouter);
 app.use('/api/v1/pet', PetRoutes);
-app.use('/api', router);
+
 
 
 

@@ -4,13 +4,19 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const { CreateService, getAllService, getSingleService, UpdateService, DeleteService } = require('../controllers/services.controller');
-const { MakeANewSDoctorRegistration, GetAllDoctor, GetDoctorInformation } = require('../controllers/doctors.controller');
+const { MakeANewSDoctorRegistration, GetAllDoctor, GetDoctorInformation, getAlredayBookedTimeForMe } = require('../controllers/doctors.controller');
 const { CreateNewClinic, GetAllClinic, GetSingleClinic, UpdateClinic, DeleteClinic, GetClimicByServiceId } = require('../controllers/Clinic.controller');
+const { CreateRating } = require('../controllers/Rating.controller');
 
 //====================Doctors Routes ====================
 router.post('/Create-doctor', upload.array('images'), MakeANewSDoctorRegistration);
 router.get('/get-doctor', GetAllDoctor);
 router.get('/get-doctor/:id', GetDoctorInformation);
+router.get('/get-doctor-booked/:id', getAlredayBookedTimeForMe);
+router.post('/CreateRating', CreateRating);
+
+
+
 
 
 

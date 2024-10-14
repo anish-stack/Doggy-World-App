@@ -32,7 +32,7 @@ export default function Orders() {
     try {
       setLoading(true);
       const response = await axios.get(
-        'http://192.168.1.5:7000/api/v1/pet/get-my-bookings?type=ProductPurchase',
+        'http://192.168.1.7:7000/api/v1/pet/get-my-bookings?type=ProductPurchase',
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setLoading(false);

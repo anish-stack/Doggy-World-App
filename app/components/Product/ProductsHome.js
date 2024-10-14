@@ -14,7 +14,7 @@ const ProductsHome = () => {
     const getProduct = useCallback(async () => {
         try {
             console.log("I am hit");
-            const { data } = await axios.get('http://192.168.1.5:7000/api/v1/Product/Get-All-Products');
+            const { data } = await axios.get('http://192.168.1.7:7000/api/v1/Product/Get-All-Products');
             const responseData = data.data;
             setProduct(responseData);
         } catch (error) {

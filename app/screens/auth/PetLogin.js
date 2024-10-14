@@ -25,7 +25,7 @@ export default function PetLogin() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://192.168.1.5:7000/api/v1/pet/pet-login', {
+            const response = await axios.post('http://192.168.1.7:7000/api/v1/pet/pet-login', {
                 ContactNumber: contactNumber
             });
             console.log(response.data)
@@ -55,7 +55,7 @@ export default function PetLogin() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://192.168.1.5:7000/api/v1/pet/pet-register-resendOtp', {
+            const response = await axios.post('http://192.168.1.7:7000/api/v1/pet/pet-register-resendOtp', {
                 ContactNumber: contactNumber
             });
             Toast.show({

@@ -7,6 +7,7 @@ const { getAllVouchers, applyVoucher, createVoucher, activateVoucher, deactivate
 const { CreateCategory, UpdateCategory, DeleteCategory, GetAllActiveCategory, DeleteAllCategory } = require('../controllers/category.controller');
 const { AddItemInCart, getAllItemOfCart, RemoveItemOfCart, UpdateItemQuantityOfCart, RemoveAllItemOfCart } = require('../controllers/Cart.Controller');
 const Protect = require('../middlewares/Auth');
+const { MakeAppoinment } = require('../controllers/BookingController');
 // Configure multer storage
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -55,8 +56,12 @@ router.post('/Add-Item',Protect, AddItemInCart);
 router.get('/Get-Items', Protect, getAllItemOfCart);
 router.delete('/Remove-Item', Protect, RemoveItemOfCart);
 router.delete('/Remove-All-Item', Protect, RemoveAllItemOfCart);
-
 router.patch('/Update-Quantity', Protect, UpdateItemQuantityOfCart);
+
+
+// ====================appointment====================================//
+router.post('/book-appointment',Protect, MakeAppoinment);
+
 
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express');
 const { createPetProfile, VerifyOtp, resendOtp, login, logout, getMyProfile, AddAddress, GetAddress, UpdateAddress, DeleteAddress } = require('../controllers/PetController');
 const router = express.Router();
 const Protect = require('../middlewares/Auth');
-const { getMyBookings } = require('../controllers/BookingController');
+const { getMyBookings, GetMyAppoinment, CancelAppoinment } = require('../controllers/BookingController');
 
 
 router.post('/pet-register', createPetProfile)
@@ -21,6 +21,11 @@ router.delete('/remove-address/:id', Protect, DeleteAddress)
 
 
 router.get('/get-my-bookings', Protect, getMyBookings)
+router.get('/get-my-Appoinment', Protect, GetMyAppoinment)
+router.post('/cancel-my-Appoinment', Protect, CancelAppoinment)
+
+
+
 
 
 

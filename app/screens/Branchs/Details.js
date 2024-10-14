@@ -15,7 +15,7 @@ export default function Details() {
 
     const fetchClinic = async () => {
         try {
-            const { data } = await axios.get(`http://192.168.1.5:7000/api/v1/Doctors/Get-Single-Branch/${itemId}`);
+            const { data } = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/Get-Single-Branch/${itemId}`);
             if (data.data) {
                 console.log(data.data)
                 setClinic(data.data);

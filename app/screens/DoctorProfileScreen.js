@@ -28,10 +28,17 @@ export default function DoctorProfileScreen() {
     const colors = ['#5EB07C', '#A3D9A5'];
     const NameColors = ['#f8f8ff', '#fffafa'];
 
+    const handleModelOpen = () => {
+        setModalVisible(true)
+    }
+    const handleModelClose = () => {
+        setModalVisible(false)
+    }
+
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.5:7000/api/v1/Doctors/get-doctor/${id}`);
+                const response = await axios.get(`http://192.168.1.7:7000/api/v1/Doctors/get-doctor/${id}`);
                 if (response.data.success) {
                     setDoctor(response.data.data);
                 } else {
@@ -65,21 +72,6 @@ export default function DoctorProfileScreen() {
         );
     }
 
-    const VideoCallSelected = async (type) => {
-        try {
-            const response = await axios.get('http://192.168.1.5:7000/api/google')
-            if (response.data && response.data.url) {
-                //    console.log(response.data.url)
-                Linking.openURL(response.data.url).catch(err =>
-                    console.error("Failed to open URL: ", err)
-                );
-            } else {
-                Alert.alert('Error', 'Could not initiate Google OAuth.');
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
 
     const reviews = [
@@ -122,7 +114,7 @@ export default function DoctorProfileScreen() {
     ];
 
     const handleBookAppointment = () => {
-        setModalVisible(true); // Open the modal
+        handleModelOpen()// Open the modal
     };
 
     const consultationOptions = ['📞 Voice Call', '💬 Chat', '📸 Video Call', '🏥 Clinic Visit'];
@@ -221,7 +213,7 @@ export default function DoctorProfileScreen() {
                 animationType="fade"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => setModalVisible(false)}
+                onRequestClose={handleModelClose}
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
@@ -229,8 +221,8 @@ export default function DoctorProfileScreen() {
                         {consultationOptions.map((option, index) => (
                             <TouchableOpacity
                                 key={index}
+                                onPress={() => naviagte.navigate('Date-and-time', { type: option, doctor: doctor }, handleModelClose())}
                                 className="bg-gray-50 py-2 border rounded-md mb-2 w-full"
-                                onPress={VideoCallSelected}
                             >
                                 <Text className="text-black text-center text-lg">{option}</Text>
                             </TouchableOpacity>
@@ -238,7 +230,7 @@ export default function DoctorProfileScreen() {
 
                         <TouchableOpacity
                             style={styles.closeButton}
-                            onPress={() => setModalVisible(false)} // Close modal
+                            onPress={handleModelClose} // Close modal
                         >
                             <Text style={styles.closeText}>Close</Text>
                         </TouchableOpacity>

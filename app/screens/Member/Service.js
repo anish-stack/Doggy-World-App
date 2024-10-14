@@ -29,7 +29,7 @@ export default function ProfileService() {
         try {
             setLoading(true)
             const response = await axios.get(
-                'http://192.168.1.5:7000/api/v1/pet/get-my-bookings?type=Service',
+                'http://192.168.1.7:7000/api/v1/pet/get-my-bookings?type=Service',
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setLoading(false)
@@ -91,12 +91,12 @@ export default function ProfileService() {
 
                         </View>
                         <View className="flex-row flex items-center w-full gap-2 justify-around ">
-                            <TouchableOpacity onPress={() => handleCancel('12345')} className="bg-red-500 whitespace-nowrap w-[40%]  py-2 px-4 rounded-lg shadow hover:bg-red-600">
+                            <TouchableOpacity onPress={() => handleCancel('12345')} className="bg-red-500 whitespace-nowrap w-[100%]  py-2 px-4 rounded-lg shadow hover:bg-red-600">
                                 <Text className="font-semibold text-white text-center">Cancel</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity className="bg-blue-500 whitespace-nowrap w-[40%] text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600">
+                            {/* <TouchableOpacity className="bg-blue-500 whitespace-nowrap w-[40%] text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600">
                                 <Text className="font-semibold text-white text-center">Re-Schedule</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
 
                     </View>

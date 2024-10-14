@@ -75,7 +75,7 @@ export const AddItemInCart = (CartItems) => async (dispatch, getState) => {
         console.log('Adding process started');
 
         const response = await axios.post(
-            'http://192.168.1.5:7000/api/v1/Product/Add-Item',
+            'http://192.168.1.7:7000/api/v1/Product/Add-Item',
             CartItems,
             {
                 headers: {
@@ -102,7 +102,7 @@ export const AddItemInCart = (CartItems) => async (dispatch, getState) => {
 export const getItemOfCart = () => async (dispatch, getState) => {
     const token = selectToken(getState());
     try {
-        const response = await axios.get('http://192.168.1.5:7000/api/v1/Product/Get-Items', {
+        const response = await axios.get('http://192.168.1.7:7000/api/v1/Product/Get-Items', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -119,7 +119,7 @@ export const getItemOfCart = () => async (dispatch, getState) => {
 export const RemoveItem = (ProductId, selectedPackId) => async (dispatch, getState) => {
     const token = selectToken(getState());
     try {
-        await axios.delete('http://192.168.1.5:7000/api/v1/Product/Remove-Item', {
+        await axios.delete('http://192.168.1.7:7000/api/v1/Product/Remove-Item', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -138,7 +138,7 @@ export const RemoveItem = (ProductId, selectedPackId) => async (dispatch, getSta
 export const RemoveAllItem = () => async (dispatch, getState) => {
     const token = selectToken(getState());
     try {
-      const res =   await axios.delete('http://192.168.1.5:7000/api/v1/Product/Remove-All-Item', {
+      const res =   await axios.delete('http://192.168.1.7:7000/api/v1/Product/Remove-All-Item', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -157,7 +157,7 @@ export const RemoveAllItem = () => async (dispatch, getState) => {
 export const UpdateItemQuantityOfCart = (ProductId, Quantity) => async (dispatch, getState) => {
     const token = selectToken(getState());
     try {
-        await axios.patch('http://192.168.1.5:7000/api/v1/Product/Update-Quantity', {
+        await axios.patch('http://192.168.1.7:7000/api/v1/Product/Update-Quantity', {
             ProductId,
             Quantity,
         }, {
